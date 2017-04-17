@@ -1,0 +1,44 @@
+.header {
+   color: #fff;
+   text-align: center;
+   background: url('../../images/subj-img-hist.jpg') no-repeat;
+
+   .container {
+      background: #333e48;
+      height: 100px;
+      padding-top: 50px;
+
+      &:after {
+         clear: both;
+      }
+   }
+
+   input {
+      padding: 5px 20px;
+      border-radius: 10px;
+      font-size: 20px;
+      box-sizing: border-box;
+   }
+
+   button {
+      color: #fff;
+      background: #7348b5;
+      transition: .3s;
+      display: inline-block;
+      border: none;
+      height: 40px;
+      padding: 0 8px;
+      min-width: 70px;
+      text-align: center;
+      cursor: pointer;
+      border-radius: 10px;
+      &:hover {
+         background: lighten(#7348b5, 10%);
+      }
+   }
+
+   &__name {
+      margin-top: 15px;
+   }
+
+ }
