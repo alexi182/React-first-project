@@ -1,7 +1,6 @@
 .footer {
-   background: #1f2e48;
    text-align: center;
-   background: url('../../images/subj-img-geo.jpg') no-repeat;
+/*   background: url('../images/subj-img-geo.jpg') no-repeat;*/
 
    &__name {
       padding-top: 20px;
@@ -10,5 +9,4 @@
       height: 100px;
       background: grey;
    }
-
 }

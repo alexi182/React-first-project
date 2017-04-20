@@ -62,15 +62,6 @@ export default class Header extends React.Component {
                 <button type="button" onClick={this.handleClick}>Очистить</button>
 
                 <h2>Имя:{this.state.name}</h2>
-              {/*  <ul>
-                   {this.props.items.map((item, index) =>
-                       <li key={index}>
-                          <a href={item.link}>
-                             {item.label}
-                          </a>
-                       </li>
-                   )}
-                </ul>*/}
 
                 <Headermenu items={menu} />
              </div>

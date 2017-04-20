@@ -3,7 +3,7 @@ var webpack = require('webpack'); //подключение модуля webpack
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 var CleanWebpackPlugin = require('clean-webpack-plugin');
-// var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var CssSourcemapPlugin = require('css-sourcemaps-webpack-plugin');
 // var CopyWebpackPlugin = require('copy-webpack-plugin');
 
@@ -39,17 +39,33 @@ module.exports = {
                }
             ]
          },
+
+         // {
+         //    test: /\.scss$/,
+         //    exclude: /node_modules/,
+         //    use: [{
+         //       loader: "style-loader" // creates style nodes from JS strings
+         //    }, {
+         //       loader: "css-loader" // translates CSS into CommonJS
+         //    }, {
+         //       loader: "sass-loader" // compiles Sass to CSS
+         //    }]
+         // },
+
          {
+            test: /\.css$/,
+            loader: ExtractTextPlugin.extract({
+               fallbackLoader: 'style-loader',
+               loader: ['css-loader', 'resolve-url-loader']
+            }),
+         }, {
             test: /\.scss$/,
-            exclude: /node_modules/,
-            use: [{
-               loader: "style-loader" // creates style nodes from JS strings
-            }, {
-               loader: "css-loader" // translates CSS into CommonJS
-            }, {
-               loader: "sass-loader" // compiles Sass to CSS
-            }]
+            loader: ExtractTextPlugin.extract({
+               fallbackLoader: 'style-loader',
+               loader: ['css-loader', 'sass-loader', 'resolve-url-loader']
+            }),
          },
+
          {
             test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
             use: [{
@@ -122,7 +138,7 @@ module.exports = {
       extensions: ['.js', '.jsx', '.css']
    },
    target: 'web',
-/*   devtool: 'source-map',*/
+   devtool: 'source-map',
    plugins: [
       new webpack.NoEmitOnErrorsPlugin(),
       new HtmlWebpackPlugin({
@@ -137,10 +153,10 @@ module.exports = {
          }
       }),
       new CssSourcemapPlugin(),
-      /*  new ExtractTextPlugin({
+      new ExtractTextPlugin({
        allChunks: true,
        filename: 'style.css'
-       }),*/
+       }),
       /* new webpack.optimize.UglifyJsPlugin({
        comments: false,
        disable: true
